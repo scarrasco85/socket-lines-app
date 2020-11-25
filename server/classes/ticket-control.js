@@ -38,6 +38,7 @@ class TicketControl {
 
         let jsonData = {
             lastTicket: this.lastTicket,
+            // nextTicket: this.lastTicket + 1,
             today: this.today
         }
 

@@ -1,32 +1,40 @@
 const { io } = require('../server');
 const { TicketControl } = require('../classes/ticket-control');
+const data = require('../data/data.json');
+
 
 const ticketControl = new TicketControl();
 
 // Clients conections
 io.on('connection', (client) => {
 
-    console.log('Usuario conectado');
-
-    client.emit('enviarMensaje', {
-        user: 'Admin',
-        message: 'Welcome to this app'
-    });
-
-
-    client.on('disconnect', () => {
-        console.log('Usuario desconectado');
-    });
-
-    // Listening 'enviarMensaje' of clients
-    client.on('enviarMensaje', (data) => {
-
+    client.on('nextTicket', (data, callback) => {
         console.log(data);
-
-        // Broadcast 'enviarMensaje'
-        client.broadcast.emit('enviarMensaje', data);
+        let nextTicket = ticketControl.nextTicket();
+        console.log('El siguiente ticket es :', nextTicket);
+        callback(nextTicket);
 
     });
+
+    // client.emit('enviarMensaje', {
+    //     user: 'Admin',
+    //     message: 'Welcome to this app'
+    // });
+
+
+    // client.on('disconnect', () => {
+    //     console.log('Usuario desconectado');
+    // });
+
+    // // Listening 'enviarMensaje' of clients
+    // client.on('enviarMensaje', (data) => {
+
+    //     console.log(data);
+
+    //     // Broadcast 'enviarMensaje'
+    //     client.broadcast.emit('enviarMensaje', data);
+
+    // });
 
     // Listening 'enviarMensaje' of clients
     //  client.on('enviarMensaje', (data, callback) => {
