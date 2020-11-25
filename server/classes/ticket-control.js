@@ -1,19 +1,31 @@
 const fs = require('fs');
 
+class Ticket {
+
+    constructor(numTicket, desktop) {
+
+        this.numTicket = numTicket;
+        this.desktop = desktop;
+    }
+
+}
+
 class TicketControl {
 
     constructor() {
 
         this.lastTicket = 0;
         this.today = new Date().getDate();
+        this.pendingTickets = [];
 
         let data = require('../data/data.json');
 
         // Every time the system reboots or starts a new day
         if (data.today === this.today) {
             this.lastTicket = data.lastTicket;
+            this.pendingTickets = data.pendingTickets
         } else {
-            this.rebootSystem();
+            this.rebootCount();
         }
     }
 
@@ -21,6 +33,11 @@ class TicketControl {
     nextTicket() {
 
         this.lastTicket += 1;
+        // lastTicket = numTicket, null = desktop
+        let newTicket = new Ticket(this.lastTicket, null);
+        console.log({ newTicket });
+        this.pendingTickets.push(newTicket);
+
         this.saveData();
 
         return `Ticket ${ this.lastTicket }`;
@@ -33,6 +50,7 @@ class TicketControl {
     rebootCount() {
 
         this.lastTicket = 0;
+        this.pendingTickets = [];
         this.saveData();
 
     }
@@ -41,8 +59,8 @@ class TicketControl {
 
         let jsonData = {
             lastTicket: this.lastTicket,
-            // nextTicket: this.lastTicket + 1,
-            today: this.today
+            today: this.today,
+            pendingTickets: this.pendingTickets
         }
 
         let jsonDataString = JSON.stringify(jsonData);
