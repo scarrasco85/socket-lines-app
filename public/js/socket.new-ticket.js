@@ -20,3 +20,9 @@ $('#btnNewTicket').on('click', function() {
         lblNewTicket.text(nextTicket);
     });
 });
+
+// Show current ticket the first time you enter new-ticket.html
+socket.on('currentStatus', function(resp) {
+
+    lblNewTicket.text(resp.currentTicket);
+});

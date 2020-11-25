@@ -25,6 +25,9 @@ class TicketControl {
 
         return `Ticket ${ this.lastTicket }`;
     }
+    getLastTicket() {
+        return `Ticket ${ this.lastTicket }`;
+    }
 
     // Reboot the tickets lines
     rebootCount() {

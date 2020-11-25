@@ -16,6 +16,11 @@ io.on('connection', (client) => {
 
     });
 
+    // The actual ticket
+    client.emit('currentStatus', {
+        currentTicket: ticketControl.getLastTicket()
+    });
+
     // client.emit('enviarMensaje', {
     //     user: 'Admin',
     //     message: 'Welcome to this app'
