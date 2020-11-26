@@ -1,3 +1,4 @@
+// Establecer conexión
 var socket = io();
 
 // Referencias elementos html
@@ -43,7 +44,7 @@ socket.on('showedScreenPublics', function({ nextFourTickets }) {
 // Actualiza los HTML que simulan pantallas del public.html
 function updateHTML(nextFourTickets) {
 
-    for (i = 0; i < nextFourTickets.length; i++) {
+    for (i = 0; i < nextFourTickets.length - 1; i++) {
 
         lblTickets[i].text('Ticket ' + nextFourTickets[i].numTicket);
         lblDesktops[i].text('Escritorio ' + nextFourTickets[i].desktop);

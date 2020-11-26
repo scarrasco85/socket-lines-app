@@ -1,7 +1,5 @@
 const { io } = require('../server');
 const { TicketControl } = require('../classes/ticket-control');
-const data = require('../data/data.json');
-
 
 const ticketControl = new TicketControl();
 
@@ -9,9 +7,9 @@ const ticketControl = new TicketControl();
 io.on('connection', (client) => {
 
     client.on('nextTicket', (data, callback) => {
-        console.log(data);
+
         let nextTicket = ticketControl.nextTicket();
-        console.log('El siguiente ticket es :', nextTicket);
+
         callback(nextTicket);
 
     });
@@ -42,6 +40,7 @@ io.on('connection', (client) => {
         client.broadcast.emit('showedScreenPublics', {
             nextFourTickets: ticketControl.getNextFourTickets()
         });
+
     });
 
 });
