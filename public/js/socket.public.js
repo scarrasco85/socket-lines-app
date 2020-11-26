@@ -37,8 +37,7 @@ socket.on('showedScreenPublics', function({ nextFourTickets }) {
 
     var audio = new Audio('audio/new-ticket.mp3');
     audio.play();
-
-
+    console.log('+++++++++', nextFourTickets);
     updateHTML(nextFourTickets);
 });
 
