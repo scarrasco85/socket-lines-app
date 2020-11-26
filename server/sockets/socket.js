@@ -38,7 +38,10 @@ io.on('connection', (client) => {
         // devolvemos al cliente(frontend) el ticket a atender para mostrarlo en las pantallas
         callback(ticketToAttend);
         // En este momento ya hay un escritorio que está atendiendo un nuevo ticket, por lo que habría
-        // que actualizar los 4 siguientes tickets
+        // que actualizar los 4 siguientes tickets a todo el mundo
+        client.broadcast.emit('showedScreenPublics', {
+            nextFourTickets: ticketControl.getNextFourTickets()
+        });
     });
 
 });

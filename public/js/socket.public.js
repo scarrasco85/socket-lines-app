@@ -23,11 +23,21 @@ socket.on('disconnect', function() {
 });
 
 // Cada vez que cambia el estado se actualizan las pantallas públicas que ven los clientes donde se muestran
-// los 4 tickets que se estan atendiendo
+// los 4 tickets que se estan atendiendo - Este es necesario para la primera vez que se inicia una ventana
+// public.html y que se muestren sin tener que pulsar atender un ticket
 socket.on('currentStatus', function({ nextFourTickets }) {
 
     updateHTML(nextFourTickets);
 
+});
+
+// Para actualizar todas las ventanas públicas que haya
+socket.on('showedScreenPublics', function({ nextFourTickets }) {
+
+    var audio = $('audio');
+    audio.play();
+
+    updateHTML(nextFourTickets);
 });
 
 // Actualiza los HTML que simulan pantallas del public.html
