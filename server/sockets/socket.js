@@ -18,7 +18,8 @@ io.on('connection', (client) => {
 
     // The actual ticket
     client.emit('currentStatus', {
-        currentTicket: ticketControl.getLastTicket()
+        currentTicket: ticketControl.getLastTicket(),
+        nextFourTickets: ticketControl.getNextFourTickets()
     });
 
     // Recibe el escritorio y devuelve el ticket con el escritorio asignado para mostrarlo en el cliente
@@ -32,7 +33,7 @@ io.on('connection', (client) => {
         }
 
         // Recibimos el ticket que se va a atender con su escritorio asignado
-        let ticketToAttend = ticketControl.attendTicket(data.desktop);
+        let ticketToAttend = ticketControl.attendTicket(desktop.desktop);
 
         // devolvemos al cliente(frontend) el ticket a atender para mostrarlo en las pantallas
         callback(ticketToAttend);

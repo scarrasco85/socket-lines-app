@@ -38,7 +38,7 @@ class TicketControl {
         this.lastTicket += 1;
         // lastTicket = numTicket, null = desktop
         let newTicket = new Ticket(this.lastTicket, null);
-        console.log({ newTicket });
+
         this.pendingTickets.push(newTicket);
 
         this.saveData();
@@ -50,6 +50,7 @@ class TicketControl {
     attendTicket(desktop) {
 
         if (this.pendingTickets.length === 0) {
+
             return `No hay tickets`;
         }
 
@@ -68,8 +69,6 @@ class TicketControl {
             // eliminamos el último elemento del array
             this.nextFourTickets.splice(-1, 1);
         }
-        console.log('Tickets a mostrar');
-        console.log(this.nextFourTickets);
 
         this.saveData();
 
@@ -77,8 +76,14 @@ class TicketControl {
 
     }
 
+    // devuelve el último ticket
     getLastTicket() {
         return `Ticket ${ this.lastTicket }`;
+    }
+
+    getNextFourTickets() {
+
+        return this.nextFourTickets;
     }
 
     // Reboot the tickets lines
