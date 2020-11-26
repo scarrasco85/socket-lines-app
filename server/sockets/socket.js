@@ -37,7 +37,9 @@ io.on('connection', (client) => {
         callback(ticketToAttend);
         // En este momento ya hay un escritorio que está atendiendo un nuevo ticket, por lo que habría
         // que actualizar los 4 siguientes tickets a todo el mundo
-        client.broadcast.emit('showedScreenPublics', {
+        client.broadcast.emit('showedScreenPublics', function() {
+            console.log('BROADCAST');
+        }, {
             nextFourTickets: ticketControl.getNextFourTickets()
         });
 
