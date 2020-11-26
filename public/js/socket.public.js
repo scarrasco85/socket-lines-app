@@ -33,7 +33,7 @@ socket.on('currentStatus', function({ nextFourTickets }) {
 });
 
 // Para actualizar todas las ventanas públicas que haya
-socket.on('showedScreenPublics', function(nextFourTickets) {
+socket.on('showedScreenPublics', function({ nextFourTickets }) {
 
     var audio = new Audio('audio/new-ticket.mp3');
     audio.play();
