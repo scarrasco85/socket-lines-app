@@ -1,3 +1,4 @@
+// Establecer conexión
 var socket = io();
 
 var lblNewTicket = $('#lblNuevoTicket');
@@ -11,6 +12,12 @@ socket.on('disconnect', function() {
     console.log('Perdimos la conexión con el servidor');
 });
 
+// Show current ticket the first time you enter new-ticket.html
+socket.on('currentStatus', function(resp) {
+
+    lblNewTicket.text(resp.currentTicket);
+});
+
 // $-JQuery - Escuchamos evento click del button de new-ticket.html
 $('#btnNewTicket').on('click', function() {
 
@@ -19,10 +26,4 @@ $('#btnNewTicket').on('click', function() {
     socket.emit('nextTicket', null, function(nextTicket) {
         lblNewTicket.text(nextTicket);
     });
-});
-
-// Show current ticket the first time you enter new-ticket.html
-socket.on('currentStatus', function(resp) {
-
-    lblNewTicket.text(resp.currentTicket);
 });
