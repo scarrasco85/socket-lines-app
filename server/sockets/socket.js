@@ -43,4 +43,9 @@ io.on('connection', (client) => {
 
     });
 
+    client.on('restart', () => {
+
+        ticketControl.rebootCount();
+    });
+
 });

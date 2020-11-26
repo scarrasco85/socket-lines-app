@@ -21,7 +21,6 @@ if (!urlParams.has('desktop')) {
     // me puedo salir
     throw new Error('El escritorio es necesario');
 }
-
 // Capturamos el escritorio
 var desktop = urlParams.get('desktop');
 var lbTicketScreen = $('small');

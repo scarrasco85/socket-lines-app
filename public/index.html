@@ -18,10 +18,12 @@
 
             <a class="btn btn-primary" href="public.html">Pantalla publica</a>
             <a class="btn btn-secondary" href="new-ticket.html">Crear Tickets</a>
+            <a id="btnRestartLine" class="btn btn-warning" href="#">Reiniciar cola</a>
 
         </div>
 
         <div class="col-6">
+            <h3>Ingresa el escritorio en el que vas a trabajar:</h3>
             <form action="desktop.html">
                 <input name="desktop" type="number" class="form-control" placeholder="desktop" autofocus required>
 
@@ -30,9 +32,16 @@
                     Ingresar
                 </button>
             </form>
+
         </div>
+
+
     </div>
 
+    <script src="js/libs/jquery.min.js"></script>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/socket.index.js"></script>
 </body>
 
 </html>
