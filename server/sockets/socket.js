@@ -21,41 +21,23 @@ io.on('connection', (client) => {
         currentTicket: ticketControl.getLastTicket()
     });
 
-    // client.emit('enviarMensaje', {
-    //     user: 'Admin',
-    //     message: 'Welcome to this app'
-    // });
+    // Recibe el escritorio y devuelve el ticket con el escritorio asignado para mostrarlo en el cliente
+    client.on('attendTicket', (desktop, callback) => {
 
+        if (!desktop) {
+            return callback({
+                err: true,
+                message: 'El escritorio es necesario'
+            });
+        }
 
-    // client.on('disconnect', () => {
-    //     console.log('Usuario desconectado');
-    // });
+        // Recibimos el ticket que se va a atender con su escritorio asignado
+        let ticketToAttend = ticketControl.attendTicket(data.desktop);
 
-    // // Listening 'enviarMensaje' of clients
-    // client.on('enviarMensaje', (data) => {
-
-    //     console.log(data);
-
-    //     // Broadcast 'enviarMensaje'
-    //     client.broadcast.emit('enviarMensaje', data);
-
-    // });
-
-    // Listening 'enviarMensaje' of clients
-    //  client.on('enviarMensaje', (data, callback) => {
-
-    //     console.log(data);
-
-    //     if (message.user) {
-    //         callback({
-    //             resp: 'Todo salió bien'
-    //         });
-    //     } else {
-    //         callback({
-    //             resp: 'Algo salió mal'
-    //         });
-    //     }
-
-    // });
+        // devolvemos al cliente(frontend) el ticket a atender para mostrarlo en las pantallas
+        callback(ticketToAttend);
+        // En este momento ya hay un escritorio que está atendiendo un nuevo ticket, por lo que habría
+        // que actualizar los 4 siguientes tickets
+    });
 
 });
