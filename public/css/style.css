@@ -12,6 +12,10 @@ table {
     text-align: center;
 }
 
+audio {
+    display: none
+}
+
 .ticket-actual {
     background-color: #282828;
 }
